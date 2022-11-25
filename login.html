@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+    <style>
+        body {
+            background-color: rgb(144, 142, 142);
+        }
+
+        .login-box {
+            width: 500px;
+            height: 400px;
+            border: 1px solid rgb(3, 3, 3);
+            box-shadow: 0 0 10px 5px rgb(200, 197, 197);
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+
+        .title {
+            height: 30px;
+            line-height: 30px;
+            font-weight: 800;
+            padding-left: 10px;
+            background-color: #eee;
+
+        }
+
+        .content {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            border: 1px solid #eee;
+            margin: 80px 49px 0 49px;
+        }
+
+        .content .input-box {
+            margin-top: 50px;
+            text-align: center;
+
+        }
+
+        .content .input-box input {
+            height: 25px;
+            width: 250px;
+        }
+
+        .content .tips {
+            background-color: #fff;
+            font-size: 16px;
+            position: absolute;
+            left: 50%;
+            top: -10px;
+            transform: translateX(-50%);
+
+        }
+
+        .input-box .select-box {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .input-box .select-box select {
+            height: 30px;
+
+        }
+
+        .button-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            padding: 0 60px;
+
+        }
+
+        .button-box button {
+            height: 30px;
+            border: 1px solid rgb(195, 187, 187);
+            background: linear-gradient(#fff, rgb(190, 187, 187));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <div class="title">CY网络聊天室</div>
+
+        <div class="content">
+            <div class="tips">请输入登录信息</div>
+            <div class="input-box">
+                <div>
+                    <label>昵称:</label>
+                    <input type="text">
+                </div>
+                <div class="select-box">
+                    <label>ROOM:</label>
+                    <select>
+                        <option value="">---请选择房间号---</option>
+                        <option value="209">209</option>
+                        <option value="cy">cy</option>
+                        <option value="一号楼">一号楼</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="button-box">
+            <button class="resiter-button">创建房间</button>
+            <button class="login-button">登录房间</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    const input = document.querySelector('input')
+    const resiterButton = document.querySelectorAll('button')[0] //注册按钮
+    const loginButton = document.querySelectorAll('button')[1] //登录按钮
+    const select = document.querySelector("select")
+
+    //获取选中项的索引
+    let roomName
+    select.onchange = () => {
+        if (select.selectedOptions[0].value !== 0) {
+            roomName = select.selectedOptions[0].value
+        }
+    }
+
+
+
+    loginButton.onclick = () => {
+        if (roomName && input.value) {
+            location.href = `http://127.0.0.1:3002/page.html?nickName=${input.value}&roomName=${roomName}`
+        } else {
+            alert("房间号或昵称不能为空")
+        }
+
+    }
+</script>
+
+</html>
